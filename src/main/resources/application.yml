@@ -1,0 +1,102 @@
+server:
+  port: 8081
+management:
+  endpoint:
+    health:
+      show-details: never
+      enabled: true
+      cache:
+        time-to-live: 10s
+      probes:
+        enabled: true
+  metrics:
+    export:
+      azure:
+        enabled: true
+        instrumentation-key: ""
+  endpoints:
+    web:
+      base-path: /
+      path-mapping:
+        health: health
+        liveness: liveness
+        readiness: readiness
+      exposure:
+        include: health, liveness, readiness
+spring:
+  application:
+    name: operationsandexecution
+  profiles:
+    include: local
+  messages:
+    basename: messages
+  datasource:
+    url: ""
+    username: ""
+    password: ""
+    driver-class-name: ""
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+      minimum-idle: 2
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+  data:
+    mongodb:
+      uri: ""
+      database: ""
+  main:
+    log-startup-info: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+  output:
+    ansi:
+      enabled: ALWAYS
+azure:
+  application-insights:
+    connection-string: ""
+  keyvault:
+    secret:
+      enabled: true
+      uri: ""
+      client-id: ""
+      client-secret: ""
+      tenant-id: ""
+  storage:
+    blob:
+      enabled: true
+      connection-string: ""
+      container-name: ""
+rest:
+  entrust:
+    url: ""
+logging:
+  level:
+    web: INFO
+    root: INFO
+    org.mongodb.driver: WARN
+    com.azure: WARN
+    io.netty: WARN
+    org.springframework.data.repository.config: WARN
+    org.springframework.boot: INFO
+    org.springframework.data: WARN
+    org.hibernate: WARN
+    com.zaxxer.hikari: WARN
+    org.apache.catalina: INFO
+    org.springframework.web: INFO
+    org.springframework.security: WARN
+    org.springframework.cloud: WARN
+    jakarta.persistence.spi: ERROR
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
