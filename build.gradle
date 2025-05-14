@@ -1,0 +1,65 @@
+plugins {
+    id 'org.springframework.boot' version '3.3.5'
+    id 'io.spring.dependency-management' version '1.1.3'
+    id 'java'
+}
+
+group = 'com.pragma'
+version = '0.0.1-SNAPSHOT'
+description = 'businessarea'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'io.netty:netty-common:4.1.118.Final'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'com.microsoft.sqlserver:mssql-jdbc:12.2.0.jre11'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.mongodb:mongodb-driver-sync:4.11.5'
+    implementation 'org.mongodb:mongodb-driver-core:4.11.5'
+    implementation 'com.azure:azure-cosmos:4.68.0'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.3'
+    implementation 'org.xmlunit:xmlunit-core:2.10.0'
+    implementation 'jakarta.annotation:jakarta.annotation-api:3.0.0'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    implementation 'io.micrometer:micrometer-core:1.14.1'
+    implementation 'com.azure:azure-security-keyvault-keys:4.9.0'
+    implementation 'com.azure:azure-security-keyvault-secrets:4.9.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'com.azure:azure-storage-blob:12.29.0'
+    implementation 'com.azure.spring:spring-cloud-azure-starter-storage-blob:5.22.0'
+    implementation 'com.microsoft.azure:applicationinsights-agent:3.6.2'
+    implementation 'com.microsoft.azure:applicationinsights-logging-logback:2.6.4'
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.tngtech.archunit:archunit-junit5:1.4.0'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:3.3.5'
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
