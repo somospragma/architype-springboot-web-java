@@ -2,7 +2,7 @@ package com.pragma.operationsandexecution.loansanddeposits.domain.ports.out;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pragma.operationsandexecution.crosscutting.exceptions.StorageException;
+import com.pragma.operationsandexecution.loansanddeposits.domain.exceptions.StorageException;
 
 import java.io.InputStream;
 

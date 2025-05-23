@@ -4,11 +4,11 @@ management:
   endpoint:
     health:
       show-details: never
-      enabled: true
       cache:
         time-to-live: 10s
       probes:
         enabled: true
+      access: read_only
   metrics:
     export:
       azure:
@@ -31,10 +31,10 @@ spring:
   messages:
     basename: messages
   datasource:
-    url: ""
-    username: ""
-    password: ""
-    driver-class-name: ""
+    url: jdbc:sqlserver://localhost:1433;databaseName=LoansDB
+    username: sa
+    password: Your_password123
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 10
@@ -48,8 +48,8 @@ spring:
         dialect: org.hibernate.dialect.SQLServerDialect
   data:
     mongodb:
-      uri: ""
-      database: ""
+      uri: mongodb://root:example@localhost:27017/loansdb?authSource=admin
+      database: loansdb
   main:
     log-startup-info: true
   servlet:
@@ -73,8 +73,8 @@ azure:
   storage:
     blob:
       enabled: true
-      connection-string: ""
-      container-name: ""
+      connection-string: "DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://localhost:10000/devstoreaccount1;"
+      container-name: "test"
 rest:
   entrust:
     url: ""
