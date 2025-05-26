@@ -2,12 +2,6 @@ package com.pragma.operationsandexecution;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-
-import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.constants.CommonConstants.PACKAGE_ENTITY_MANAGERS_ENTITIES;
-import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.constants.CommonConstants.PACKAGE_INFRASTRUCTURE;
-import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.constants.CommonConstants.PACKAGE_PROJECT_ROOT;
 
 /**
  * Clase principal de la aplicación.
@@ -21,9 +15,7 @@ import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.
  * @EntityScan especifica los paquetes donde se encuentran las entidades JPA.
  * @EnableCosmosRepositories habilita los repositorios de Spring Data para Cosmos DB en el paquete indicado.
  */
-@SpringBootApplication(scanBasePackages = PACKAGE_PROJECT_ROOT)
-@EntityScan(basePackages = PACKAGE_ENTITY_MANAGERS_ENTITIES)
-@EnableMongoRepositories(basePackages = PACKAGE_INFRASTRUCTURE)
+@SpringBootApplication
 public class BankingApplication {
 
     /**
