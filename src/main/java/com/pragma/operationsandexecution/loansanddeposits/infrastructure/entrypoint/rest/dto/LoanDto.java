@@ -4,7 +4,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -25,12 +29,16 @@ import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.
  * DTO para transferir datos de préstamos.
  */
 @Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Schema(description = SWAGGER_SCHEMA_LOAN_DTO)
 public class LoanDto {
 
     @NotEmpty(message = VALIDATE_DTO_LOAN_ID_NOT_EMPTY)
     @Schema(description = SWAGGER_SCHEMA_LOAN_ID_DESCRIPTION, example = SWAGGER_SCHEMA_LOAN_ID_EXAMPLE)
-    private String loanId;
+    private String id;
 
     @NotNull(message = VALIDATE_DTO_AMOUNT_NOT_NULL)
     @Positive(message = VALIDATE_DTO_AMOUNT_POSITIVE)
@@ -50,12 +58,12 @@ public class LoanDto {
     @Schema(description = SWAGGER_SCHEMA_END_DATE_DESCRIPTION, example = SWAGGER_SCHEMA_END_DATE_EXAMPLE)
     private LocalDate endDate;
 
-    public @NotEmpty(message = VALIDATE_DTO_LOAN_ID_NOT_EMPTY) String getLoanId() {
-        return loanId;
+    public @NotEmpty(message = VALIDATE_DTO_LOAN_ID_NOT_EMPTY) String getId() {
+        return id;
     }
 
-    public void setLoanId(@NotEmpty(message = VALIDATE_DTO_LOAN_ID_NOT_EMPTY) String loanId) {
-        this.loanId = loanId;
+    public void setId(@NotEmpty(message = VALIDATE_DTO_LOAN_ID_NOT_EMPTY) String id) {
+        this.id = id;
     }
 
     public @NotNull(message = VALIDATE_DTO_AMOUNT_NOT_NULL) @Positive(message = VALIDATE_DTO_AMOUNT_POSITIVE) Double getAmount() {
@@ -93,7 +101,7 @@ public class LoanDto {
     @Override
     public String toString() {
         return "LoanDto{" +
-                "loanId='" + loanId + '\'' +
+                "loanId='" + id + '\'' +
                 ", amount=" + amount +
                 ", interestRate=" + interestRate +
                 ", startDate=" + startDate +

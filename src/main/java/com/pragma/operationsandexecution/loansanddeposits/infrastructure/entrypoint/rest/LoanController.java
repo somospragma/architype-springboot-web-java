@@ -29,8 +29,6 @@ import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.
 import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.constants.InfrastructureConstants.MESSAGE_KEY_CREATION_SUCCESS;
 import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.constants.InfrastructureConstants.MESSAGE_KEY_GET_SUCCESS;
 import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.constants.InfrastructureConstants.PATH_LOAN_CONTROLLER;
-import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.constants.InfrastructureConstants.PATH_LOAN_CONTROLLER_CREATE_LOAN;
-import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.constants.InfrastructureConstants.PATH_LOAN_CONTROLLER_GET_LOAN_BY_ID;
 import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.constants.InfrastructureConstants.PATH_VARIABLE_ID;
 import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.constants.SwaggerConstants.SWAGGER_OPERATION_CREATE_LOGAN;
 import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.constants.SwaggerConstants.SWAGGER_OPERATION_GET_LOAN_BY_ID;
@@ -67,7 +65,7 @@ public class LoanController {
      * @param loanDTO el objeto {@link LoanDto} que contiene los detalles del préstamo a crear
      * @return una respuesta con el préstamo creado y el estado HTTP correspondiente
      */
-    @PostMapping(PATH_LOAN_CONTROLLER_CREATE_LOAN)
+    @PostMapping
     @Operation(summary = SWAGGER_OPERATION_CREATE_LOGAN)
     @CommonApiResponses
     public ResponseEntity<ApiResponseDto<Loan>> createLoan(@Valid @RequestBody LoanDto loanDTO, WebRequest request) {
@@ -89,7 +87,7 @@ public class LoanController {
      * @return una respuesta con los detalles del préstamo y el estado HTTP
      * correspondiente
      */
-    @GetMapping(PATH_LOAN_CONTROLLER_GET_LOAN_BY_ID)
+    @GetMapping("/{id}")
     @Operation(summary = SWAGGER_OPERATION_GET_LOAN_BY_ID)
     @CommonApiResponses
     public ResponseEntity<ApiResponseDto<Loan>> getLoanById(@PathVariable(name = PATH_VARIABLE_ID) String loanId, WebRequest request) {

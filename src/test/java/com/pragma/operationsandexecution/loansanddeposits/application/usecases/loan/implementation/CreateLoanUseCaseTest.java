@@ -40,14 +40,14 @@ class CreateLoanUseCaseTest {
     @BeforeEach
     void setUp() {
         loanDto = LoanDto.builder()
-                .loanId("123")
+                .id("123")
                 .amount(1000.0)
                 .interestRate(5.0)
                 .startDate(LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .endDate(LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .build();
         loan = Loan.builder()
-                .loanId("123")
+                .id("123")
                 .amount(1000.0)
                 .interestRate(5.0)
                 .startDate(LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")))

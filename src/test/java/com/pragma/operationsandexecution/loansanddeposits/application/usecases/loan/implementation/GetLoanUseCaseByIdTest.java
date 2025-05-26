@@ -33,7 +33,7 @@ class GetLoanUseCaseByIdTest {
     @BeforeEach
     void setUp() {
         loan = new Loan();
-        loan.setLoanId("123");
+        loan.setId("123");
         loan.setAmount(1000.0);
         loan.setInterestRate(5.0);
         loan.setStartDate(LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")));

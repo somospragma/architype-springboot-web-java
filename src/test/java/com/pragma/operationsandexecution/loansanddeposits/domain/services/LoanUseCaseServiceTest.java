@@ -30,7 +30,7 @@ class LoanUseCaseServiceTest {
     @Test
     void validateLoanDateTest(){
         var loan = Loan.builder()
-                .loanId("1")
+                .id("1")
                 .amount(1000.0)
                 .interestRate(0.05)
                 .startDate(LocalDate.of(2023, 1, 1))

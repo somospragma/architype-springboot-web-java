@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Loan {
 
-    private String loanId;
+    private String id;
     private Double amount;
     private Double interestRate;
     private LocalDate startDate;
@@ -24,7 +24,7 @@ public class Loan {
     @Override
     public String toString() {
         return "LoanSqlModel{" +
-                "loanId='" + loanId + '\'' +
+                "loanId='" + id + '\'' +
                 ", amount=" + amount +
                 ", interestRate=" + interestRate +
                 ", startDate=" + startDate +

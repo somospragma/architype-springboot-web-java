@@ -3,23 +3,15 @@ GO
 USE LoansDB;
 GO
 CREATE TABLE Loan (
-    id INT PRIMARY KEY IDENTITY(1,1),
+    id NVARCHAR(255) PRIMARY KEY,
     amount DECIMAL(18,2) NOT NULL,
-    customer_name NVARCHAR(100) NOT NULL,
-    status NVARCHAR(50) NOT NULL
+    interest_rate DECIMAL(18,4) NULL,
+    start_date DATE NULL,
+    end_date DATE NULL
 );
 
-CREATE TABLE TraceLoan (
-    id INT PRIMARY KEY IDENTITY(1,1),
-    loan_id INT NOT NULL,
-    action NVARCHAR(100) NOT NULL,
-    action_date DATETIME NOT NULL,
-    FOREIGN KEY (loan_id) REFERENCES Loan(id)
-);
 
-INSERT INTO Loan (amount, customer_name, status) VALUES (10000.00, 'Juan Perez', 'APPROVED');
-INSERT INTO Loan (amount, customer_name, status) VALUES (5000.00, 'Maria Gomez', 'PENDING');
+INSERT INTO Loan (id, amount, interest_rate, start_date, end_date) VALUES ('LN-001', 10000.00, 5.5, '2025-05-26', '2026-05-26');
+INSERT INTO Loan (id, amount, interest_rate, start_date, end_date) VALUES ('LN-002', 5000.00, 4.2, '2025-06-01', '2026-06-01');
 
-INSERT INTO TraceLoan (loan_id, action, action_date) VALUES (1, 'CREATED', GETDATE());
-INSERT INTO TraceLoan (loan_id, action, action_date) VALUES (2, 'CREATED', GETDATE());
 

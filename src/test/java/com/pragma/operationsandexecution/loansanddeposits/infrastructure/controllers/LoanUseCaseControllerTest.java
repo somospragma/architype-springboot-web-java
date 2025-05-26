@@ -54,14 +54,14 @@ class LoanUseCaseControllerTest {
     void createLoanSuccess() {
         // Arrange
         LoanDto loanDTO = LoanDto.builder()
-                .loanId("123")
+                .id("123")
                 .amount(1000.0)
                 .interestRate(5.0)
                 .startDate(LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .endDate(LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")))
                 .build();
         var loan = Loan.builder()
-                .loanId("123")
+                .id("123")
                 .amount(1000.0)
                 .interestRate(5.0)
                 .startDate(LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")))
@@ -97,7 +97,7 @@ class LoanUseCaseControllerTest {
         String loanId = "123";
         String transactionId = "txn-456";
         Loan loanResponse = Loan.builder()
-                .loanId("123")
+                .id("123")
                 .amount(1000.0)
                 .interestRate(5.0)
                 .startDate(LocalDate.parse("2025-01-01", DateTimeFormatter.ofPattern("yyyy-MM-dd")))

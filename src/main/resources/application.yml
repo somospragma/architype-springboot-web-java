@@ -27,11 +27,11 @@ spring:
   application:
     name: operationsandexecution
   profiles:
-    include: local
+    active: local
   messages:
     basename: messages
   datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=LoansDB
+    url: jdbc:sqlserver://localhost:1433;databaseName=LoansDB;encrypt=false
     username: sa
     password: Your_password123
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver

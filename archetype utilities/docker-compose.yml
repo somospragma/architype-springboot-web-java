@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   sqlserver:
-    image: mcr.microsoft.com/azure-sql-edge
-    platform: linux/arm64
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64
     container_name: sqlserver
     environment:
       - ACCEPT_EULA=Y

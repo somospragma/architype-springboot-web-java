@@ -48,7 +48,7 @@ public class LoanUseCase {
     @Transactional
     public Loan createLoan(Loan loan, String transactionId) {
         authenticationUseCase.validateTokenUser(UTILITY_EXAMPLE_USER_NAME_VALUE, transactionId); /*El valor que envio por parametro como userName un ejemplo*/
-        validateLoanExist(loan.getLoanId(), transactionId);
+        validateLoanExist(loan.getId(), transactionId);
         var result = iLoanPort.save(loan);
         validateFields(loan, transactionId);
         validateSaveTraceLoan(loan, transactionId);
@@ -72,20 +72,20 @@ public class LoanUseCase {
 
     private void validateSaveTraceLoan(Loan loan, String transactionId) {
         if (loan.getAmount().equals(TRACE_LOAN_THRESHOLD)) {
-            traceLoanUseCase.saveTraceLoan(loan.getLoanId(), loan.getAmount(), transactionId);
+            traceLoanUseCase.saveTraceLoan(loan.getId(), loan.getAmount(), transactionId);
         }
     }
 
     private void validateLoanExist(String loanId, String transactionId) {
-        iLoanPort.getLoanById(loanId).orElseThrow(() ->
-            new ApiException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.toString(), MESSAGE_KEY_LOAN_FOUND_ERROR,
-                iLoggerBuilderPort.buildErrorWithLogWarning(UTILITY_KEY_MESSAGE, VALUE_MESSAGE_LOAN_EXIST_ERROR,
-                        MESSAGE_LOG_LOAN_EXIST_ERROR, transactionId))
-        );
+        if (iLoanPort.getLoanById(loanId).isPresent()) {
+            throw new ApiException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.toString(), MESSAGE_KEY_LOAN_FOUND_ERROR,
+                    iLoggerBuilderPort.buildErrorWithLogWarning(UTILITY_KEY_MESSAGE, VALUE_MESSAGE_LOAN_EXIST_ERROR,
+                            MESSAGE_LOG_LOAN_EXIST_ERROR, transactionId));
+        }
     }
 
     private void validateFields(Loan loan, String transactionId) {
-        if (!loan.getLoanId().matches("\\d+")) {
+        if (!loan.getId().matches("\\d+")) {
             throw new ApiException(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.toString(), MESSAGE_KEY_CREATION_ERROR,
                     iLoggerBuilderPort.buildErrorWithLogWarning(UTILITY_KEY_MESSAGE, VALUE_MESSAGE_LOAN_ID_FORMAT_INCORRECT,
                             MESSAGE_LOG_FORMAT_INCORRECT, transactionId));

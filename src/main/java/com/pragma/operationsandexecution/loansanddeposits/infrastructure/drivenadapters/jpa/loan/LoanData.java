@@ -3,6 +3,10 @@ package com.pragma.operationsandexecution.loansanddeposits.infrastructure.driven
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -20,42 +24,50 @@ import static com.pragma.operationsandexecution.loansanddeposits.infrastructure.
  * @Table especifica el nombre de la tabla en la base de datos a la que se mapea esta entidad.
  */
 
+@Getter
+@Setter
 @Entity
 @Table(name = UTILITY_NAME_TABLE_LOAN_SQL)
+@NoArgsConstructor
 public class LoanData {
 
     /**
      * Identificador único del préstamo.
      */
     @Id
-    private String loanId;
+    @Column(name = "id")
+    private String id;
 
     /**
      * Monto del préstamo.
      */
+    @Column(name = "amount")
     private Double amount;
 
     /**
      * Tasa de interés aplicada al préstamo.
      */
+    @Column(name = "interest_rate")
     private Double interestRate;
 
     /**
      * Fecha de inicio del préstamo.
      */
+    @Column(name = "start_date")
     private LocalDate startDate;
 
     /**
      * Fecha de finalización del préstamo.
      */
+    @Column(name = "end_date")
     private LocalDate endDate;
 
-    public String getLoanId() {
-        return loanId;
+    public String getId() {
+        return id;
     }
 
-    public void setLoanId(String loanId) {
-        this.loanId = loanId;
+    public void setId(String loanId) {
+        this.id = loanId;
     }
 
     public Double getAmount() {
@@ -93,7 +105,7 @@ public class LoanData {
     @Override
     public String toString() {
         return "LoanSqlEntity{" +
-                "loanId='" + loanId + '\'' +
+                "loanId='" + id + '\'' +
                 ", amount=" + amount +
                 ", interestRate=" + interestRate +
                 ", startDate=" + startDate +

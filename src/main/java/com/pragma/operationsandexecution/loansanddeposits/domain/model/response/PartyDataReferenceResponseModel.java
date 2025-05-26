@@ -1,5 +1,12 @@
 package com.pragma.operationsandexecution.loansanddeposits.domain.model.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class PartyDataReferenceResponseModel {
 
     private String username;
@@ -10,25 +17,7 @@ public class PartyDataReferenceResponseModel {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     @Override
     public String toString() {
