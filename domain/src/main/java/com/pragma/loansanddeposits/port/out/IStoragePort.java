@@ -1,6 +1,6 @@
 package com.pragma.loansanddeposits.port.out;
 
-import org.springframework.web.multipart.MultipartFile;
+import com.pragma.loansanddeposits.util.RequestFile;
 
 import com.pragma.loansanddeposits.exceptions.StorageException;
 
@@ -21,7 +21,7 @@ public interface IStoragePort {
      * @param file     el archivo a subir
      * @throws StorageException si ocurre un error durante la subida
      */
-    void uploadFile(String blobName, MultipartFile file) throws StorageException;
+    void uploadFile(String blobName, RequestFile file) throws StorageException;
 
     /**
      * Descarga un archivo desde el almacenamiento de blobs.

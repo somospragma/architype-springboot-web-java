@@ -6,15 +6,14 @@ import com.pragma.loansanddeposits.model.PartyDataReference;
 import com.pragma.loansanddeposits.port.out.IAuthenticationPort;
 import com.pragma.loansanddeposits.port.out.ILoggerBuilderPort;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 
-import static com.pragma.loansanddeposits.constants.DomainConstants.MESSAGE_KEY_VALIDATE_TOKEN_USER_ERROR;
-import static com.pragma.loansanddeposits.constants.DomainConstants.MESSAGE_LOG_USER_TOKEN_GET_ERROR;
-import static com.pragma.loansanddeposits.constants.DomainConstants.UTILITY_EXAMPLE_LAST_NAME_VALUE;
-import static com.pragma.loansanddeposits.constants.DomainConstants.UTILITY_EXAMPLE_NAME_VALUE;
-import static com.pragma.loansanddeposits.constants.DomainConstants.UTILITY_EXAMPLE_USER_NAME_2_VALUE;
-import static com.pragma.loansanddeposits.constants.DomainConstants.UTILITY_KEY_MESSAGE;
-import static com.pragma.loansanddeposits.constants.DomainConstants.VALUE_MESSAGE_USER_TOKEN_GET_ERROR;
+import static com.pragma.loansanddeposits.constant.DomainConstants.MESSAGE_KEY_VALIDATE_TOKEN_USER_ERROR;
+import static com.pragma.loansanddeposits.constant.DomainConstants.MESSAGE_LOG_USER_TOKEN_GET_ERROR;
+import static com.pragma.loansanddeposits.constant.DomainConstants.UTILITY_EXAMPLE_LAST_NAME_VALUE;
+import static com.pragma.loansanddeposits.constant.DomainConstants.UTILITY_EXAMPLE_NAME_VALUE;
+import static com.pragma.loansanddeposits.constant.DomainConstants.UTILITY_EXAMPLE_USER_NAME_2_VALUE;
+import static com.pragma.loansanddeposits.constant.DomainConstants.UTILITY_KEY_MESSAGE;
+import static com.pragma.loansanddeposits.constant.DomainConstants.VALUE_MESSAGE_USER_TOKEN_GET_ERROR;
 
 @RequiredArgsConstructor
 public class AuthenticationUseCase {
@@ -25,7 +24,7 @@ public class AuthenticationUseCase {
     public void validateTokenUser(String userName, String transactionId) {
         var partyDataReferenceResponseModel = iAuthenticationPort.getTokenAuthenticationEntrust(userName, transactionId);
         if (partyDataReferenceResponseModel.getUsername() == null) { /*Esta validación solo es un ejemplo*/
-            throw new ApiException(HttpStatus.UNAUTHORIZED, HttpStatus.UNAUTHORIZED.toString(), MESSAGE_KEY_VALIDATE_TOKEN_USER_ERROR,
+            throw new ApiException(401, "401 UNAUTHORIZED", MESSAGE_KEY_VALIDATE_TOKEN_USER_ERROR,
                     iLoggerBuilderPort.buildErrorWithLogWarning(UTILITY_KEY_MESSAGE, VALUE_MESSAGE_USER_TOKEN_GET_ERROR,
                             MESSAGE_LOG_USER_TOKEN_GET_ERROR, transactionId));
         }

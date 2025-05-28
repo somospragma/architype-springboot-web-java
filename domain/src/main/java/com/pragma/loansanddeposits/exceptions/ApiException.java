@@ -1,7 +1,6 @@
 package com.pragma.loansanddeposits.exceptions;
 
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 
 import java.util.Map;
 
@@ -16,7 +15,7 @@ import java.util.Map;
 @Getter
 public class ApiException extends RuntimeException {
 
-    private final HttpStatus httpStatus;
+    private final Integer httpStatus;
     private final String errorCode;
     private final String messageKey;
     private final Map<String, String> validationErrors;
@@ -29,7 +28,7 @@ public class ApiException extends RuntimeException {
      * @param messageKey       Llave para resolver el mensaje desde el servicio de mensajes.
      * @param validationErrors Mapa de campos con sus respectivos mensajes de error (opcional).
      */
-    public ApiException(HttpStatus httpStatus, String errorCode, String messageKey, Map<String, String> validationErrors) {
+    public ApiException(Integer httpStatus, String errorCode, String messageKey, Map<String, String> validationErrors) {
         super(messageKey);
         this.httpStatus = httpStatus;
         this.errorCode = errorCode;
@@ -44,7 +43,7 @@ public class ApiException extends RuntimeException {
      * @param errorCode  Código interno del error
      * @param messageKey Llave del mensaje
      */
-    public ApiException(HttpStatus httpStatus, String errorCode, String messageKey) {
+    public ApiException(Integer httpStatus, String errorCode, String messageKey) {
         this(httpStatus, errorCode, messageKey, null);
     }
 }

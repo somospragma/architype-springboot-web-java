@@ -1,8 +1,7 @@
 package com.pragma.loansanddeposits.usecase;
 
+import com.pragma.loansanddeposits.port.out.IMessagePort;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.MessageSource;
-import org.springframework.web.context.request.WebRequest;
 
 import java.util.Locale;
 
@@ -15,7 +14,7 @@ public class MessageUseCase {
     /**
      * Fuente de mensajes inyectada por Spring para internacionalización.
      */
-    private final MessageSource messageSource;
+    private final IMessagePort messagePort;
 
     /**
      * Obtiene el mensaje localizado dado una key y un Locale específico.
@@ -25,7 +24,7 @@ public class MessageUseCase {
      * @return Mensaje localizado
      */
     public String getMessage(String key, Locale locale) {
-        return messageSource.getMessage(key, null, locale);
+        return messagePort.getMessage(key, locale);
     }
 
     /**
@@ -35,19 +34,7 @@ public class MessageUseCase {
      * @return Mensaje localizado
      */
     public String getMessage(String key) {
-        return messageSource.getMessage(key, null, Locale.getDefault());
-    }
-
-    /**
-     * Obtiene el transactionId desde el request.
-     * Si no existe, genera uno por defecto.
-     *
-     * @param request WebRequest actual.
-     * @return transactionId.
-     */
-    public String getTransactionId(WebRequest request) {
-        String transactionId = request.getHeader("transactionId");
-        return (transactionId != null && !transactionId.isEmpty()) ? transactionId : "generated-fallback-transactionId";
+        return messagePort.getMessage(key, Locale.getDefault());
     }
 
 }

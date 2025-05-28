@@ -4,14 +4,12 @@ package com.pragma.loansanddeposits.usecase;
 import com.pragma.loansanddeposits.model.LoanTrace;
 import com.pragma.loansanddeposits.port.out.ITraceLoanPort;
 import lombok.RequiredArgsConstructor;
-import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 public class TraceLoanUseCase {
 
     private final ITraceLoanPort iTraceLoanPort;
 
-    @Transactional
     public void saveTraceLoan(String loanId, Double amount, String transactionId) {
         iTraceLoanPort.saveTraceLoan(buildLoan(loanId, amount, transactionId));
     }
