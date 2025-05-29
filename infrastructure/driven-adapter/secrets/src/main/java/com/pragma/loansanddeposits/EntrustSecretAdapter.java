@@ -6,9 +6,8 @@ import com.azure.security.keyvault.secrets.SecretClientBuilder;
 import com.azure.security.keyvault.secrets.models.KeyVaultSecret;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.pragma.loansanddeposits.model.EntrustCredentials;
 import com.pragma.loansanddeposits.exceptions.ApiException;
+import com.pragma.loansanddeposits.model.EntrustCredentials;
 import com.pragma.loansanddeposits.port.out.IEntrustSecret;
 import com.pragma.loansanddeposits.port.out.ILoggerPort;
 import lombok.RequiredArgsConstructor;

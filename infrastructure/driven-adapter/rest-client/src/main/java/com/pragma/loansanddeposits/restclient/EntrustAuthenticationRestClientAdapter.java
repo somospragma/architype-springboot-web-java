@@ -15,6 +15,7 @@ import com.pragma.loansanddeposits.restclient.model.response.EntrustErrorRespons
 import com.pragma.loansanddeposits.restclient.model.response.PartyDataReferenceResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -33,6 +34,7 @@ import static com.pragma.loansanddeposits.restclient.RestClientConstants.UTILITY
 import static com.pragma.loansanddeposits.restclient.RestClientConstants.UTILITY_SECRET_NAME_ENTRUST;
 
 @Component
+@Profile("!local")
 @RequiredArgsConstructor
 public class EntrustAuthenticationRestClientAdapter implements IAuthenticationPort {
 

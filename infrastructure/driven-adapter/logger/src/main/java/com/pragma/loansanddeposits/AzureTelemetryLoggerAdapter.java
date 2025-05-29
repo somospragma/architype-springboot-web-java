@@ -1,12 +1,14 @@
 package com.pragma.loansanddeposits;
 
 import com.microsoft.applicationinsights.TelemetryClient;
+import com.microsoft.applicationinsights.telemetry.SeverityLevel;
 import com.microsoft.applicationinsights.telemetry.TraceTelemetry;
 import com.pragma.loansanddeposits.constant.LoggerConstants;
 import com.pragma.loansanddeposits.port.out.ILoggerBuilderPort;
 import com.pragma.loansanddeposits.port.out.ILoggerPort;
 import com.pragma.loansanddeposits.valueobject.MessageType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -25,10 +27,11 @@ import static com.pragma.loansanddeposits.constant.AzureTelemetryConstants.LOG_W
  * </p>
  */
 @Component
+@Profile("!local")
 @RequiredArgsConstructor
 public class AzureTelemetryLoggerAdapter implements ILoggerPort, ILoggerBuilderPort {
 
-    private final TelemetryClient telemetryClient = new TelemetryClient();
+    private final TelemetryClient telemetryClient;
 
     private static final Map<MessageType, String> LOG_LEVELS = Map.of(
             MessageType.INFO, LOG_INFO,
@@ -36,7 +39,7 @@ public class AzureTelemetryLoggerAdapter implements ILoggerPort, ILoggerBuilderP
             MessageType.ERROR, LOG_ERROR,
             MessageType.SUCCESS, LOG_SUCCESS
     );
-    private static final Map<MessageType, com.microsoft.applicationinsights.telemetry.SeverityLevel> SEVERITY_LEVELS = Map.of(
+    private static final Map<MessageType, SeverityLevel> SEVERITY_LEVELS = Map.of(
             MessageType.INFO, com.microsoft.applicationinsights.telemetry.SeverityLevel.Information,
             MessageType.WARNING, com.microsoft.applicationinsights.telemetry.SeverityLevel.Warning,
             MessageType.ERROR, com.microsoft.applicationinsights.telemetry.SeverityLevel.Error,
@@ -59,7 +62,7 @@ public class AzureTelemetryLoggerAdapter implements ILoggerPort, ILoggerBuilderP
      * @param type el tipo de mensaje
      * @return el nivel de severidad correspondiente
      */
-    private com.microsoft.applicationinsights.telemetry.SeverityLevel getSeverityLevel(MessageType type) {
+    private SeverityLevel getSeverityLevel(MessageType type) {
         return SEVERITY_LEVELS.getOrDefault(type, com.microsoft.applicationinsights.telemetry.SeverityLevel.Verbose);
     }
 
