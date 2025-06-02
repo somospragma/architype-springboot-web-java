@@ -1,0 +1,9 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    implementation 'com.azure:azure-storage-blob:12.29.0'
+    implementation 'com.azure.spring:spring-cloud-azure-starter-storage-blob:5.22.0'
+}
+

@@ -392,7 +392,7 @@ A continuación, se describen las diferentes capas de la arquitectura, su propó
         * **Ejemplo de Implementación en el Arquetipo:**
             ```java
             public interface ILoanSqlServicePort {
-                void createLoan(LoanSqlModel loanSQLModel);
+                void createLoan(LoanSqlModel loan);
                 LoanSqlEntity getLoanById(String loanId);
             }
             ```
@@ -401,7 +401,7 @@ A continuación, se describen las diferentes capas de la arquitectura, su propó
         * **Ejemplo de Implementación en el Arquetipo:**
             ```java
             public interface ILoanSqlPersistencePort {
-                void save(LoanSqlModel loanSQLModel);
+                void save(LoanSqlModel loan);
                 LoanSqlEntity getLoanById(String loanId);
             }
             ```
@@ -417,10 +417,10 @@ A continuación, se describen las diferentes capas de la arquitectura, su propó
                 ```java
                 {
                     @Transactional
-                    public void createLoan(LoanSqlModel loanSqlModel) {
-                        loggerService.logInfo("Iniciando lógica de negocio para crear un préstamo con loanId: " + loanSqlModel.getLoanId());
-                        iLoanSQLPersistencePort.save(loanSqlModel);
-                        validateFields(loanSqlModel);
+                    public void createLoan(LoanSqlModel loan) {
+                        loggerService.logInfo("Iniciando lógica de negocio para crear un préstamo con loanId: " + loan.getLoanId());
+                        iLoanSQLPersistencePort.save(loan);
+                        validateFields(loan);
                     }
                 }
                 ```
@@ -476,8 +476,8 @@ A continuación, se describen las diferentes capas de la arquitectura, su propó
                 {
                     @Override
                     public void execute(LoanDto loanDTO) {
-                        LoanSqlModel loanSQLModel = iLoanDtoMapper.loanDtoToLoanSqlModel(loanDTO);
-                        iLoanSqlServicePort.createLoan(loanSQLModel);
+                        LoanSqlModel loan = iLoanDtoMapper.loanDtoToLoanSqlModel(loanDTO);
+                        iLoanSqlServicePort.createLoan(loan);
                     }
                 }
                 ```
@@ -856,7 +856,7 @@ A continuación, se describen las diferentes capas de la arquitectura, su propó
                         unmappedTargetPolicy = ReportingPolicy.IGNORE,
                         unmappedSourcePolicy = ReportingPolicy.IGNORE)
                 public interface ILoanEntityMapper {
-                    LoanSqlEntity loanSqlModelToLoanSqlEntity(LoanSqlModel loanSQLModel);
+                    LoanSqlEntity loanSqlModelToLoanSqlEntity(LoanSqlModel loan);
                 }
             }
             ```
